@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="D:/Aston_tasks/testng/lesson_2_7_factorial/src/test/java/org/example/FactorialTest.java">
+        <classes>
+            <class name="org.example.FactorialTest">
+                <methods>
+                    <include name="testFactorial"/>
+                    <include name="testFactorialWithZero"/>
+                    <include name="testFactorialWithNegativevalue"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

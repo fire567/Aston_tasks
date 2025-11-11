@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="D:/Aston_tasks/testng/lesson_2_7_square/src/test/java/org.example.TriangleSquareTest.java">
+        <classes>
+            <class name="org.example.TriangleSquareTest">
+                <methods>
+                    <include name="testTriangleSquare" />
+                    <include name="testTriangleSquareIsNotExist" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
