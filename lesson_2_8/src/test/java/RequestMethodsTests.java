@@ -52,20 +52,31 @@ public class RequestMethodsTests {
 
     @Test
     public void putRequestTest(){
+        Map<String,String> payload = new HashMap<>();
+        payload.put("age", "28");
+
         requestSpec.when().
+                body(payload).
                 pathParam("foo1", "bar1").
                 put("/put?foo1={foo1}").
                 then().log().body().statusCode(HttpStatus.SC_OK).and().
-                body("args.foo1", equalTo("bar1")).and();
+                body("args.foo1", equalTo("bar1")).and().
+                body("data.age", equalTo(payload.get("age")));
+
     }
 
     @Test
     public void patchRequestTest(){
+        Map<String,String> payload = new HashMap<>();
+        payload.put("age", "28");
+
         requestSpec.when().
+                body(payload).
                 pathParam("foo1", "bar1").
                 patch("/patch?foo1={foo1}").
                 then().log().body().statusCode(HttpStatus.SC_OK).and().
-                body("args.foo1", equalTo("bar1")).and();
+                body("args.foo1", equalTo("bar1")).and().
+                body("data.age", equalTo(payload.get("age")));
     }
 
     @Test
@@ -74,6 +85,6 @@ public class RequestMethodsTests {
                 pathParam("foo1", "bar1").
                 delete("/delete?foo1={foo1}").
                 then().log().body().statusCode(HttpStatus.SC_OK).and().
-                body("args.foo1", equalTo("bar1")).and();
+                body("args.foo1", equalTo("bar1"));
     }
 }
