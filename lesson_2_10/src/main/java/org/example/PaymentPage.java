@@ -3,7 +3,10 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashMap;
 
 public class PaymentPage extends BasePage {
@@ -114,8 +117,6 @@ public class PaymentPage extends BasePage {
     };
 
     public boolean checkCorrectNumber(String expectedNumber) {
-        System.out.println(expectedNumber);
-        System.out.println(findNumbers(getPhoneNumber()));
         if(expectedNumber.equals(findNumbers(getPhoneNumber()))) return true;
         return false;
     }
@@ -136,15 +137,18 @@ public class PaymentPage extends BasePage {
         for (String logo : actualLogos.keySet()) {
             String expectedLogo = expectedLogos.getLogosData().get(logo);
             String actualLogo = actualLogos.get(logo);
-            System.out.println("[ " + logo + ": " + actualLogo + " ] = " + "[ " + logo + ": " + expectedLogo + " ]");
             if(!actualLogo.contains(expectedLogo)) {
-                System.out.println("[ " + logo + ": " + actualLogo + " ] = " + "[ " + logo + ": " + expectedLogo + " ]");
                 return false;
             }
         }
         return true;
     }
 
-
+    public void waitUntilFormIsLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("bepaid-app")));
+        driver.switchTo().frame(0);
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("cc-number")));
+    }
 
 }

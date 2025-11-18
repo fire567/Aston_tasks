@@ -7,9 +7,7 @@ public class BasePage {
         for (String placeholder : actualPlaceholders.keySet()) {
             String expectedPlaceholder = expectedPlaceholders.getPlaceholdersData().get(placeholder);
             String actualPlaceholder = actualPlaceholders.get(placeholder);
-            System.out.println("[ " + placeholder + ": " + actualPlaceholder + " ] = " + "[ " + placeholder + ": " + expectedPlaceholder + " ]");
             if(!expectedPlaceholder.equals(actualPlaceholder)) {
-                System.out.println("[ " + placeholder + ": " + actualPlaceholder + " ] != " + "[ " + placeholder + ": " + expectedPlaceholder + " ]");
                 return false;
             }
         }
@@ -20,9 +18,7 @@ public class BasePage {
         for (String placeholder : actualPlaceholders.keySet()) {
             String expectedPlaceholder = expectedPlaceholders.getPlaceholdersData().get(placeholder);
             String actualPlaceholder = actualPlaceholders.get(placeholder);
-            System.out.println("[ " + placeholder + ": " + actualPlaceholder + " ] = " + "[ " + placeholder + ": " + expectedPlaceholder + " ]");
             if(!expectedPlaceholder.equals(actualPlaceholder)) {
-                System.out.println("[ " + placeholder + ": " + actualPlaceholder + " ] != " + "[ " + placeholder + ": " + expectedPlaceholder + " ]");
                 return false;
             }
         }

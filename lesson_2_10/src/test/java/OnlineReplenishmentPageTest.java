@@ -15,23 +15,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class OnlineReplenishmentPageTest {
     private static WebDriver driver;
 
     @BeforeAll
-    public static void beforeTests() {
+    public static void beforeTests() throws InterruptedException {
         driver = new ChromeDriver();
 
         driver.get("https://www.mts.by/");
 
-        WebElement denieButton = driver.findElement(By.xpath("//button[contains(text(), 'Отклонить')]"));
-        denieButton.click();
+        WebElement acceptButton = driver.findElement(By.xpath("//button[contains(text(), 'Принять')]"));
+        acceptButton.click();
+        Thread.sleep(1000);
+    }
+
+    @BeforeEach
+    public void beforeEach() {
+        driver.navigate().to("https://www.mts.by/");
     }
 
     @DisplayName("Тест названия блока")
     @Test
-    @Order(1)
     void blockNameTest() {
         OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
         Assertions.assertEquals("Онлайн пополнение\nбез комиссии",  onlineReplenishmentPage.getBlockName());
@@ -39,7 +43,6 @@ public class OnlineReplenishmentPageTest {
 
     @DisplayName("Тестирование логотипов платежных систем")
     @Test
-    @Order(2)
     void logoTest() {
         List<String> cardsTestData = new ArrayList<>();
         cardsTestData.add("Visa");
@@ -62,26 +65,23 @@ public class OnlineReplenishmentPageTest {
 
     @DisplayName("Тестирование ссылки 'Подробнее о сервисе'")
     @Test
-    @Order(3)
     void serviceLinkTest() {
         OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
         String expectedLink = "https://www.mts.by/help/poryadok-oplaty-i-bezopasnost-internet-platezhey/";
 
         onlineReplenishmentPage.getServiceLink().click();
-        System.out.println(driver.getCurrentUrl());
         Assertions.assertEquals(expectedLink, driver.getCurrentUrl());
         driver.navigate().back();
     }
 
     @DisplayName("Тестирование кнопки 'Продолжить'")
     @Test
-    @Order(4)
     void continueButtonTest() {
         OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
 
         onlineReplenishmentPage.submitForm("297777777", "100");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("bepaid-app")));
         Assertions.assertTrue(onlineReplenishmentPage.getPopUp().isDisplayed());
         driver.switchTo().frame(0);
@@ -93,8 +93,8 @@ public class OnlineReplenishmentPageTest {
 
     @DisplayName("Проверка плейсхолдеров в форме 'Онлайн пополнение без комиссии'")
     @Test
-    @Order(5)
     void PlaceholdersTest() {
+
         OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
 
         Assertions.assertTrue(onlineReplenishmentPage.communicationServicesPlaceholdersCheck());
@@ -114,21 +114,16 @@ public class OnlineReplenishmentPageTest {
 
     @DisplayName("Тестирование отображения суммы")
     @Test
-    @Order(6)
     void priceCheckTest() {
         OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
-        onlineReplenishmentPage.changeReplanishmentMethod("Услуги связи");
         String amount = "100.5";
         String phone = "297777777";
 
         onlineReplenishmentPage.submitForm(phone, amount);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("bepaid-app")));
-        Assertions.assertTrue(onlineReplenishmentPage.getPopUp().isDisplayed());
-        driver.switchTo().frame(0);
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("cc-number")));
         PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.waitUntilFormIsLoaded();
+
         Assertions.assertTrue(paymentPage.checkCorrectPrice(amount));
         Assertions.assertTrue(paymentPage.checkCorrectPriceOnButton(amount));
         Assertions.assertTrue(paymentPage.checkCorrectPriceInAgreement(amount));
@@ -137,9 +132,15 @@ public class OnlineReplenishmentPageTest {
 
     @DisplayName("Тестирование отображения номера телефона")
     @Test
-    @Order(7)
     void phoneNumberCheckTest() {
+        OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
+        String amount = "100.5";
+        String phone = "297777777";
+
+        onlineReplenishmentPage.submitForm(phone, amount);
+
         PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.waitUntilFormIsLoaded();
         String number = "375297777777";
 
         Assertions.assertTrue(paymentPage.checkCorrectNumber(number));
@@ -147,19 +148,31 @@ public class OnlineReplenishmentPageTest {
 
     @DisplayName("Тестирование плейсхолдеров в форме оплаты")
     @Test
-    @Order(8)
     void paymentPlaceholdersCheckTest() {
+        OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
+        String amount = "100.5";
+        String phone = "297777777";
+
+        onlineReplenishmentPage.submitForm(phone, amount);
+
         PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.waitUntilFormIsLoaded();
 
         Assertions.assertTrue(paymentPage.paymentPlaceholdersCheck());
     }
 
     @DisplayName("Тестирование логотипов платежных систем в форме оплаты")
     @Test
-    @Order(9)
     void paymentsLogosTest() {
+        OnlineReplenishmentPage onlineReplenishmentPage = new OnlineReplenishmentPage(driver);
+        String amount = "100.5";
+        String phone = "297777777";
+
+        onlineReplenishmentPage.submitForm(phone, amount);
+
         PaymentsLogosData paymentsLogosData = new PaymentsLogosData();
         PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.waitUntilFormIsLoaded();
 
         HashMap<String, String> actualLogos = new HashMap<>();
         actualLogos.put("visa", paymentPage.getVisaLogo().getAttribute("src"));
@@ -170,6 +183,11 @@ public class OnlineReplenishmentPageTest {
 
         paymentPage.iconsComparsion(actualLogos, paymentsLogosData);
 
+    }
+    
+    @AfterAll
+    public static void closeBrowser() {
+        driver.close();
     }
 }
 
