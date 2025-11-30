@@ -18,14 +18,14 @@ public class Circle implements Figure {
     }
 
     @Override
-    public double perimeter() {
+    public double perimeter(int[] sidesArray) {
         double result = 2 * Math.PI * radius;
         return result;
     }
 
     @Override
     public void showInfo() {
-        System.out.println(" [ " + "Периметр: " + perimeter() + ", "
+        System.out.println(" [ " + "Периметр: " + perimeter(new int[] {radius}) + ", "
          + "Площадь: " + square() + ", " 
          + "Цвет фона: " + fillColor + ", " 
          + "Цвет границ: " + borderColor);

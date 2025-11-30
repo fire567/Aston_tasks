@@ -20,14 +20,8 @@ public class Rectangle implements Figure {
     }
 
     @Override
-    public double perimeter() {
-        double result = 2 * height + 2 * width;
-        return result;
-    }
-
-    @Override
     public void showInfo() {
-        System.out.println(" [ " + "Периметр: " + perimeter() + ", "
+        System.out.println(" [ " + "Периметр: " + perimeter(new int[] {height, width}) + ", "
          + "Площадь: " + square() + ", " 
          + "Цвет фона: " + fillColor + ", " 
          + "Цвет границ: " + borderColor);

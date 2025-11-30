@@ -23,14 +23,8 @@ public class Triangle implements Figure {
     }
 
     @Override
-    public double perimeter() {
-        double result = a + b + c;
-        return result;
-    }
-
-    @Override
     public void showInfo() {
-        System.out.println(" [ " + "Периметр: " + perimeter() + ", "
+        System.out.println(" [ " + "Периметр: " + perimeter(new int[] {a, b, c}) + ", "
          + "Площадь: " + square() + ", " 
          + "Цвет фона: " + fillColor + ", " 
          + "Цвет границ: " + borderColor);
