@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ComparsionTest {
+
     @Test(testName = "Проверка одинаквых значений")
     void testMakeComparsion() {
         boolean result = Comparsion.makeComparsion(3, 3);

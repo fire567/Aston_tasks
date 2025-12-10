@@ -47,7 +47,6 @@ public class ColculatorTest {
          Assert.assertEquals(Colculator.sum(a, b), result);
     }
 
-
     @Test(testName = "Тестирование функции вычитания", dataProvider = "decrementTestData")
     void testDecrement(int a, int b, int result) {
         Assert.assertEquals(Colculator.decrement(a, b), result);

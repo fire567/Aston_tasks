@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 class FactorialTest {
+
     @Test(testName = "Тестирование функции факториала")
     void testFactorial() throws MyNegativeValueExсeption {
         Assert.assertEquals(Factorial.calculateFactorial(5), 120);

@@ -11,6 +11,7 @@ public class Colculator {
     }
 
     public static double divide(double a, double b) throws ArithmeticException {
+
         if (b == 0) {
             throw new ArithmeticException("Divide by zero");
         }

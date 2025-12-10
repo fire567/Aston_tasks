@@ -4,8 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-
 public class TriangleSquareTest {
+
     @DataProvider(name = "triangleSquareTestData")
     public static Object[][] triangleSquareTestData() {
         return new Object[][]{
@@ -13,6 +13,7 @@ public class TriangleSquareTest {
                 {4.0, 3.0, 3.0, 4.47213595499958}
         };
     }
+
     @Test(testName = "Тестирвоание функции расчёта площади", dataProvider = "triangleSquareTestData")
     void testTriangleSquare(double a, double b, double c, double result) throws MyTriangleException {
         Assert.assertEquals(result, TriangleSquare.calculateSquare(a, b, c));
