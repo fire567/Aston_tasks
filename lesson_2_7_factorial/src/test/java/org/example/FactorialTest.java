@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class FactorialTest {
+
     @DisplayName("Тестирование функции факториала")
     @Test
     void testFactorial() throws MyNegativeValueExсeption {

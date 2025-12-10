@@ -60,5 +60,4 @@ public class ColculatorTest {
     void testMultiply(int a, int b, int result) {
         assertEquals(result, Colculator.multiply(a, b));
     }
-
 }
