@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OnlineReplenishmentPage extends BasePage {
+
     private WebDriver driver;
 
     public OnlineReplenishmentPage(WebDriver driver) {
@@ -120,7 +121,6 @@ public class OnlineReplenishmentPage extends BasePage {
         homeInternetButton.click();
     }
 
-
     public boolean communicationServicesPlaceholdersCheck() {
         PlaceholdersData expectedPlaceholders = new PlaceholdersData();
 
@@ -164,5 +164,4 @@ public class OnlineReplenishmentPage extends BasePage {
 
         return placeholdersComparsion(expectedPlaceholders, actualPlaceholders);
     };
-
 }

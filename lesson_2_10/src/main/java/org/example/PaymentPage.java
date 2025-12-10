@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class PaymentPage extends BasePage {
+
     WebDriver driver;
 
     public PaymentPage(WebDriver driver) {
@@ -150,5 +151,4 @@ public class PaymentPage extends BasePage {
         driver.switchTo().frame(0);
         wait.until(ExpectedConditions.elementToBeClickable(By.id("cc-number")));
     }
-
 }

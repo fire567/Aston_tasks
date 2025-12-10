@@ -3,6 +3,7 @@ package org.example;
 import java.util.HashMap;
 
 public class PlaceholdersData {
+
     public HashMap<String, String> expectedPlaceholdersData = new HashMap<>();
 
     public PlaceholdersData() {
