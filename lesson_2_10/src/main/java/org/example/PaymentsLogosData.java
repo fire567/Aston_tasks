@@ -3,7 +3,9 @@ package org.example;
 import java.util.HashMap;
 
 public class PaymentsLogosData {
+
     private HashMap<String, String> expectedLogosData = new HashMap<>();
+
     public PaymentsLogosData() {
         expectedLogosData.put("visa", "visa-system");
         expectedLogosData.put("mastercard", "mastercard-system");

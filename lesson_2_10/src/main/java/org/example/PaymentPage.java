@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.HashMap;
 
 public class PaymentPage extends BasePage {
+
     WebDriver driver;
 
     public PaymentPage(WebDriver driver) {

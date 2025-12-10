@@ -3,6 +3,7 @@ package org.example;
 import java.util.HashMap;
 
 public class BasePage {
+
     public boolean placeholdersComparsion(PlaceholdersData expectedPlaceholders, HashMap<String, String> actualPlaceholders) {
         for (String placeholder : actualPlaceholders.keySet()) {
             String expectedPlaceholder = expectedPlaceholders.getPlaceholdersData().get(placeholder);

@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OnlineReplenishmentPageTest {
+
     private static WebDriver driver;
 
     @BeforeAll
@@ -89,7 +90,6 @@ public class OnlineReplenishmentPageTest {
         driver.findElement(By.id("cc-number")).sendKeys(Keys.ESCAPE);
         driver.switchTo().defaultContent();
     }
-
 
     @DisplayName("Проверка плейсхолдеров в форме 'Онлайн пополнение без комиссии'")
     @Test
@@ -182,7 +182,6 @@ public class OnlineReplenishmentPageTest {
         actualLogos.put("mir", paymentPage.getMirLogo().getAttribute("src"));
 
         paymentPage.iconsComparsion(actualLogos, paymentsLogosData);
-
     }
     
     @AfterAll

@@ -3,7 +3,9 @@ package org.example;
 import java.util.HashMap;
 
 public class PaymentsPlaceholdersData {
+
     public HashMap<String, String> expectedPlaceholdersData = new HashMap<>();
+
     public PaymentsPlaceholdersData() {
         expectedPlaceholdersData.put("cardNumber", "Номер карты");
         expectedPlaceholdersData.put("validityPeriod", "Срок действия");
