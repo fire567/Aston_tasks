@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OnlineReplenishmentTest {
-    static private WebDriver driver;
 
+    static private WebDriver driver;
 
     @BeforeAll
     public static void beforeTests() {
@@ -89,5 +89,4 @@ public class OnlineReplenishmentTest {
     public static void afterTests() {
         driver.close();
     }
-
 }
