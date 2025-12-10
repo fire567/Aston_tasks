@@ -2,10 +2,8 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -33,8 +31,6 @@ public class RequestMethodsTests {
                 then().log().body().statusCode(HttpStatus.SC_OK).
                 body("data", equalTo(payload));
     }
-
-
 
     @Test
     public void postFormRequestTest(){
