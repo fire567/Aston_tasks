@@ -1,6 +1,6 @@
 package com.example;
 
-public class MyArrayDataException extends Exception {
+public class MyArrayDataException extends Exception  {
     MyArrayDataException(String message) {
         super(message);
     }
